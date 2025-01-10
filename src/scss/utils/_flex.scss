@@ -1,0 +1,63 @@
+@use "variables" as *;
+@use 'mixins' as *;
+
+// Властивість justify-content
+@each $value in $flex-values {
+  .justify-#{$value} {
+    @if ($value == start) or ($value == end) {
+      justify-content: flex-#{$value};
+    } @else if ($value == between) or ($value == around) or ($value == evenly) {
+      justify-content: space-#{$value};
+    } @else {
+      justify-content: $value;
+    }
+  }
+}
+
+// Властивість align-items
+@each $value in $flex-values {
+  .items-#{$value} {
+    @if ($value == start) or ($value == end) {
+      align-items: flex-#{$value};
+    } @else {
+      align-items: $value;
+    }
+  }
+}
+
+// Властивість align-content
+@each $value in $flex-values {
+  .content-#{$value} {
+    @if ($value == start) or ($value == end) {
+      align-content: flex-#{$value};
+    } @else if ($value == between) or ($value == around) or ($value == evenly) {
+      align-content: space-#{$value};
+    } else {
+      align-content: $value;
+    }
+  }
+}
+
+// Властивість align-self
+@each $value in $flex-values {
+  .self-#{$value} {
+    @if ($value == start) or ($value == end) {
+      align-self: flex-#{$value};
+    } @else {
+      align-self: $value;
+    }
+  }
+}
+
+// Додатково
+.flex-center {
+  @include flex-center();
+}
+
+.flex-center-column {
+  @include flex-center(column);
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
